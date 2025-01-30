@@ -104,7 +104,7 @@
               after = [ "network.target" ];
 
               serviceConfig = {
-                ExecStart = "${self.packages.${pkgs.system}.default}/bin/mqtt-iot-exporter";
+                ExecStart = "${self.packages.${pkgs.system}.default}/bin/mqtt_iot_exporter";
                 Restart = "always";
                 User = "mqtt-iot-exporter";
                 Group = "mqtt-iot-exporter";
