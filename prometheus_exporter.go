@@ -48,7 +48,7 @@ func runPrometheusServer() {
 		prometheusHandler.ServeHTTP(w, r)
 	})
 	mux.HandleFunc("/api/get-client-cert", getClientKeyEndpoint)
-	http.ListenAndServe(":9100", mux)
+	http.ListenAndServe(config.MetricsAddr, mux)
 }
 
 func findSameMetricByNameAndLabels(name string, labels map[string]string) *prometheus_dto.Metric {
