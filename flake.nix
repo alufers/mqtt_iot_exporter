@@ -122,9 +122,10 @@
             };
             users.users.mqtt-iot-exporter = {
               isSystemUser = true;
+              group = "mqtt-iot-exporter";
             };
             users.groups.mqtt-iot-exporter = {
-              members = [ "mqtt-iot-exporter" ];
+            
             };
           };
         };
