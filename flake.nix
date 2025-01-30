@@ -24,9 +24,12 @@
           devShells.default = callPackage ./shell.nix {
             inherit (gomod2nix.legacyPackages.${system}) mkGoEnv gomod2nix;
           };
-          nixosModules = {
-            mqtt-iot-exporter = import ./module.nix;
-          };
+        
         })
-    );
+    ) // {
+        nixosModules.default = {
+            mqtt-iot-exporter = import ./module.nix;
+        };
+        formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+    };
 }
