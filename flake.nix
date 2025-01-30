@@ -115,8 +115,8 @@
                   "SERVER_KEY_FILE=${toString config.services.mqtt-iot-exporter.serverKey}"
                   "CLIENT_CA_CERT=${toString config.services.mqtt-iot-exporter.clientCACert}"
                   "CLIENT_CA_KEY=${toString config.services.mqtt-iot-exporter.clientCAKey}"
-                  "AUTOGENERATE_CLIENT_CA=${toString config.services.mqtt-iot-exporter.autogenerateClientCA}"
-                  "ENABLE_CLIENT_KEY_GENERATION=${toString config.services.mqtt-iot-exporter.enableClientKeyGeneration}"
+                  "AUTOGENERATE_CLIENT_CA=${if config.services.mqtt-iot-exporter.autogenerateClientCA then "true" else "false"}"
+                  "ENABLE_CLIENT_KEY_GENERATION=${if config.services.mqtt-iot-exporter.enableClientKeyGeneration then "true" else "false"}"
                 ];
               };
             };
