@@ -45,9 +45,7 @@
 
           with lib;
 
-          let
-            cfg = config.services.mqtt-iot-exporter;
-          in
+         
           {
             options.services.mqtt-iot-exporter = {
               enable = mkEnableOption "MQTT IoT Exporter";
@@ -101,7 +99,7 @@
               };
             };
 
-            config = mkIf cfg.enable {
+            config = mkIf  config.services.mqtt-iot-exporter.enable {
               systemd.services.mqtt-iot-exporter = {
                 description = "MQTT IoT Exporter";
                 wantedBy = [ "multi-user.target" ];
@@ -113,14 +111,14 @@
                   User = "mqtt-iot-exporter";
                   Group = "mqtt-iot-exporter";
                   Environment = [
-                    "METRICS_ADDR=${cfg.metricsAddr}"
-                    "MQTT_ADDR=${cfg.mqttAddr}"
-                    "SERVER_CERT_FILE=${toString cfg.serverCert}"
-                    "SERVER_KEY_FILE=${toString cfg.serverKey}"
-                    "CLIENT_CA_CERT=${toString cfg.clientCACert}"
-                    "CLIENT_CA_KEY=${toString cfg.clientCAKey}"
-                    "AUTOGENERATE_CLIENT_CA=${toString cfg.autogenerateClientCA}"
-                    "ENABLE_CLIENT_KEY_GENERATION=${toString cfg.enableClientKeyGeneration}"
+                    "METRICS_ADDR=${ config.services.mqtt-iot-exporter.metricsAddr}"
+                    "MQTT_ADDR=${ config.services.mqtt-iot-exporter.mqttAddr}"
+                    "SERVER_CERT_FILE=${toString  config.services.mqtt-iot-exporter.serverCert}"
+                    "SERVER_KEY_FILE=${toString  config.services.mqtt-iot-exporter.serverKey}"
+                    "CLIENT_CA_CERT=${toString  config.services.mqtt-iot-exporter.clientCACert}"
+                    "CLIENT_CA_KEY=${toString  config.services.mqtt-iot-exporter.clientCAKey}"
+                    "AUTOGENERATE_CLIENT_CA=${toString  config.services.mqtt-iot-exporter.autogenerateClientCA}"
+                    "ENABLE_CLIENT_KEY_GENERATION=${toString  config.services.mqtt-iot-exporter.enableClientKeyGeneration}"
                   ];
                 };
               };
